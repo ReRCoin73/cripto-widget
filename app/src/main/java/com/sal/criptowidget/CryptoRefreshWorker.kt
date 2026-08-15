@@ -42,7 +42,6 @@ class CryptoRefreshWorker(appContext: Context, params: WorkerParameters) :
         bindCoin(views, data.render, R.id.price_render, R.id.chg_render, R.id.spark_render)
         bindCoin(views, data.atom, R.id.price_atom, R.id.chg_atom, R.id.spark_atom)
         bindCoin(views, data.ckb, R.id.price_ckb, R.id.chg_ckb, R.id.spark_ckb)
-        bindCoin(views, data.rerc, R.id.price_rerc, R.id.chg_rerc, R.id.spark_rerc)
 
         val refreshIntent = Intent(context, CryptoWidgetProvider::class.java).apply {
             action = CryptoWidgetProvider.ACTION_REFRESH

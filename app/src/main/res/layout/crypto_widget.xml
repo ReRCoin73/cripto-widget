@@ -3,168 +3,60 @@
     android:id="@+id/widget_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="@drawable/widget_bg"
-    android:padding="10dp">
+    android:padding="8dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginEnd="6dp"
-            android:orientation="vertical"
-            android:background="@drawable/cell_bg"
-            android:padding="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RENDER"
-                android:textColor="#F2F2F0"
-                android:textStyle="bold"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/price_render"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="—"
-                android:textColor="#F2F2F0"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/chg_render"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp" />
-            <ImageView
-                android:id="@+id/spark_render"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="4dp"
-                android:scaleType="fitXY" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/cell_bg"
-            android:padding="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ATOM"
-                android:textColor="#F2F2F0"
-                android:textStyle="bold"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/price_atom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="—"
-                android:textColor="#F2F2F0"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/chg_atom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp" />
-            <ImageView
-                android:id="@+id/spark_atom"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="4dp"
-                android:scaleType="fitXY" />
-        </LinearLayout>
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical"
+        android:background="@drawable/cell_bg"
+        android:padding="6dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="RENDER" android:textColor="#F2F2F0" android:textStyle="bold" android:textSize="11sp" />
+        <TextView android:id="@+id/price_render" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="—" android:textColor="#F2F2F0" android:textSize="11sp" />
+        <TextView android:id="@+id/chg_render" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="" android:textSize="10sp" />
+        <ImageView android:id="@+id/spark_render" android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:layout_marginTop="2dp" android:scaleType="fitXY" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginTop="6dp"
-        android:orientation="horizontal">
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical"
+        android:background="@drawable/cell_bg"
+        android:padding="6dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="ATOM" android:textColor="#F2F2F0" android:textStyle="bold" android:textSize="11sp" />
+        <TextView android:id="@+id/price_atom" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="—" android:textColor="#F2F2F0" android:textSize="11sp" />
+        <TextView android:id="@+id/chg_atom" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="" android:textSize="10sp" />
+        <ImageView android:id="@+id/spark_atom" android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:layout_marginTop="2dp" android:scaleType="fitXY" />
+    </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginEnd="6dp"
-            android:orientation="vertical"
-            android:background="@drawable/cell_bg"
-            android:padding="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CKB"
-                android:textColor="#F2F2F0"
-                android:textStyle="bold"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/price_ckb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="—"
-                android:textColor="#F2F2F0"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/chg_ckb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp" />
-            <ImageView
-                android:id="@+id/spark_ckb"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="4dp"
-                android:scaleType="fitXY" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/cell_bg"
-            android:padding="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RERC"
-                android:textColor="#F2F2F0"
-                android:textStyle="bold"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/price_rerc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="—"
-                android:textColor="#F2F2F0"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/chg_rerc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp" />
-            <ImageView
-                android:id="@+id/spark_rerc"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="4dp"
-                android:scaleType="fitXY" />
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/cell_bg"
+        android:padding="6dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="CKB" android:textColor="#F2F2F0" android:textStyle="bold" android:textSize="11sp" />
+        <TextView android:id="@+id/price_ckb" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="—" android:textColor="#F2F2F0" android:textSize="11sp" />
+        <TextView android:id="@+id/chg_ckb" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="" android:textSize="10sp" />
+        <ImageView android:id="@+id/spark_ckb" android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:layout_marginTop="2dp" android:scaleType="fitXY" />
     </LinearLayout>
 </LinearLayout>

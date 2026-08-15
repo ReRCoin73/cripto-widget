@@ -16,21 +16,16 @@ data class CoinResult(
 data class CryptoData(
     val render: CoinResult?,
     val atom: CoinResult?,
-    val ckb: CoinResult?,
-    val rerc: CoinResult?
+    val ckb: CoinResult?
 )
 
 object CryptoApi {
-
-    // Contrato do token RERC (ReR Coin) na rede Polygon
-    private const val RERC_CONTRACT = "0xc36385ee9d1f2f056392536f70dfe2e8eab4609c"
 
     fun fetchAll(): CryptoData {
         return CryptoData(
             render = safe { fetchBinance("RENDERUSDT") },
             atom = safe { fetchBinance("ATOMUSDT") },
-            ckb = safe { fetchBinance("CKBUSDT") },
-            rerc = safe { fetchRerc() }
+            ckb = safe { fetchBinance("CKBUSDT") }
         )
     }
 
@@ -75,26 +70,6 @@ object CryptoApi {
             changeLabel = "$sign${String.format(Locale.US, "%.2f", changePct)}%",
             up = up,
             closes = closes
-        )
-    }
-
-    private fun fetchRerc(): CoinResult {
-        // Token on-chain, sem par direto na Binance: preço vem do GeckoTerminal via contrato
-        val json = JSONObject(
-            httpGet("https://api.geckoterminal.com/api/v2/networks/polygon_pos/tokens/$RERC_CONTRACT")
-        )
-        val attrs = json.getJSONObject("data").getJSONObject("attributes")
-        val price = attrs.getString("price_usd").toDouble()
-        val h24Obj = attrs.optJSONObject("price_change_percentage")
-        val changePct = h24Obj?.optString("h24")?.toDoubleOrNull() ?: 0.0
-        val up = changePct >= 0
-        val sign = if (up) "+" else ""
-
-        return CoinResult(
-            priceLabel = fmtPrice(price),
-            changeLabel = "$sign${String.format(Locale.US, "%.2f", changePct)}%",
-            up = up,
-            closes = emptyList() // sem histórico horário confiável para este token
         )
     }
 }
