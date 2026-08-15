@@ -27,6 +27,13 @@ class CryptoRefreshWorker(appContext: Context, params: WorkerParameters) :
                 request
             )
         }
+
+        // Escolhe o layout de acordo com a largura atual do widget nesse aparelho
+        private fun chooseLayout(minWidthDp: Int): Int = when {
+            minWidthDp >= 260 -> R.layout.crypto_widget_row    // 3 lado a lado
+            minWidthDp >= 170 -> R.layout.crypto_widget_2x2    // 2 em cima, 1 embaixo
+            else -> R.layout.crypto_widget_stack               // empilhado
+        }
     }
 
     override suspend fun doWork(): Result {
@@ -37,24 +44,28 @@ class CryptoRefreshWorker(appContext: Context, params: WorkerParameters) :
         }
 
         val context = applicationContext
-        val views = RemoteViews(context.packageName, R.layout.crypto_widget)
-
-        bindCoin(views, data.render, R.id.price_render, R.id.chg_render, R.id.spark_render)
-        bindCoin(views, data.atom, R.id.price_atom, R.id.chg_atom, R.id.spark_atom)
-        bindCoin(views, data.ckb, R.id.price_ckb, R.id.chg_ckb, R.id.spark_ckb)
-
-        val refreshIntent = Intent(context, CryptoWidgetProvider::class.java).apply {
-            action = CryptoWidgetProvider.ACTION_REFRESH
-        }
-        val pendingIntent = PendingIntent.getBroadcast(
-            context, 0, refreshIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-        views.setOnClickPendingIntent(R.id.widget_root, pendingIntent)
-
         val manager = AppWidgetManager.getInstance(context)
         val ids = manager.getAppWidgetIds(ComponentName(context, CryptoWidgetProvider::class.java))
+
         for (id in ids) {
+            val options = manager.getAppWidgetOptions(id)
+            val minWidthDp = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 260)
+            val layoutRes = chooseLayout(minWidthDp)
+
+            val views = RemoteViews(context.packageName, layoutRes)
+            bindCoin(views, data.render, R.id.price_render, R.id.chg_render, R.id.spark_render)
+            bindCoin(views, data.atom, R.id.price_atom, R.id.chg_atom, R.id.spark_atom)
+            bindCoin(views, data.ckb, R.id.price_ckb, R.id.chg_ckb, R.id.spark_ckb)
+
+            val refreshIntent = Intent(context, CryptoWidgetProvider::class.java).apply {
+                action = CryptoWidgetProvider.ACTION_REFRESH
+            }
+            val pendingIntent = PendingIntent.getBroadcast(
+                context, 0, refreshIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            views.setOnClickPendingIntent(R.id.widget_root, pendingIntent)
+
             manager.updateAppWidget(id, views)
         }
         return Result.success()
